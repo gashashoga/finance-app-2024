@@ -22,11 +22,11 @@ const router = createBrowserRouter([
         element: <Dashboard />,
         loader: dashboardLoader,
         action: dashboardAction,
-        errorElement: <Error />,
+        errorElement: <Error />
       },
       {
         path:"logout",
-        action: logoutAction,
+        action: logoutAction
       }
 
     ]
@@ -38,6 +38,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  console.log("kurac")
   return (
     <div className="App">
       <RouterProvider router={router} />

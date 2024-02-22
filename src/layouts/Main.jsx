@@ -5,7 +5,7 @@ import wave from '../assets/wave.svg'
 import Nav from "../components/Nav";
 
 export function mainLoader() {
-  const username = fetchData("userName");
+  const username = fetchData("username");
   return {
     username
   }
@@ -22,7 +22,7 @@ const Main = () => {
       </main>
     <img src={wave} alt="" />
     </div>
-  );
-};
+  )
+}
 
 export default Main;

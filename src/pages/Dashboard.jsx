@@ -6,32 +6,30 @@ import { toast } from "react-toastify";
 
 // components
 import Intro from "../components/Intro";
-import AddBugetForm from "../components/AddBugetForm";
+import AddBudgetForm from "../components/AddBudgetForm";
 import AddExpenseForm from "../components/AddExpenseForm";
 import BudgetItem from "../components/BudgetItem";
 
 //  helper functions
-import { createBudget, createExpense, fetchData, waait } from "../helpers"
+import { createBudget, createExpense, fetchData } from "../helpers"
 
 // loader
 export function dashboardLoader() {
-  const userName = fetchData("userName");
+  const username = fetchData("username");
   const budgets = fetchData("budgets");
-  return { userName, budgets }
+  return { username, budgets }
 }
 
 // action
 export async function dashboardAction({ request }) {
-  await waait();
-
   const data = await request.formData();
   const { _action, ...values } = Object.fromEntries(data)
 
   // new user submission
   if (_action === "newUser") {
     try {
-      localStorage.setItem("userName", JSON.stringify(values.userName))
-      return toast.success(`Welcome, ${values.userName}`)
+      localStorage.setItem("username", JSON.stringify(values.username))
+      return toast.success(`Welcome, ${values.username}`)
     } catch (e) {
       throw new Error("There was a problem creating your account.")
     }
@@ -64,21 +62,20 @@ export async function dashboardAction({ request }) {
 }
 
 const Dashboard = () => {
-  const { userName, budgets } = useLoaderData()
-
+  const { username, budgets } = useLoaderData()
   return (
     <>
-      {userName ? (
+      {username ? (
         <div className="dashboard">
-          <h1>Welcome back, <span className="accent">{userName}</span></h1>
+          <h1>Welcome back, <span className="accent">{username}</span></h1>
           <div className="grid-sm">
             {
               budgets && budgets.length > 0
                 ? (
                   <div className="grid-lg">
                     <div className="flex-lg">
-                      <AddBugetForm />
-                      <AddExpenseForm budgets={budgets} />
+                      <AddBudgetForm />
+                      <AddExpenseForm budget={budgets} />
                     </div>
                     <h2>Existing Budgets</h2>
                     <div className="budgets">

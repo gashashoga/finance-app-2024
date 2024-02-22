@@ -1,7 +1,8 @@
 import { CurrencyDollarIcon } from "@heroicons/react/24/solid"
 import { Form, useFetcher } from "react-router-dom"
 import {useRef,useEffect} from "react"
-const AddBugetForm = () =>{
+const AddBudgetForm = () =>{
+    console.log("budzet")
     const fetcher = useFetcher()
     const issubmitting = fetcher.state === "submitting"
 
@@ -49,4 +50,4 @@ const AddBugetForm = () =>{
     )
 }
 
-export default AddBugetForm
+export default AddBudgetForm

@@ -20,7 +20,7 @@ const AddExpenseForm = ({budget}) => {
             <h2 className="h3">
                 Add New
                 <span>
-                    {budget.length === 1 && `${budget.map((budg) => (budg.name))}`}
+                    {budget?.length === 1 && `${budget.map((budg) => (budg.name))}`}
                 </span>
                 Expense
             </h2>
