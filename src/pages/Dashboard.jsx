@@ -17,7 +17,8 @@ import { createBudget, createExpense, fetchData } from "../helpers"
 export function dashboardLoader() {
   const username = fetchData("username");
   const budgets = fetchData("budgets");
-  return { username, budgets }
+  const expenses = fetchData("expenses");
+  return { username, budgets, expenses}
 }
 
 // action
@@ -62,7 +63,7 @@ export async function dashboardAction({ request }) {
 }
 
 const Dashboard = () => {
-  const { username, budgets } = useLoaderData()
+  const { username, budgets, expenses } = useLoaderData()
   return (
     <>
       {username ? (
@@ -85,6 +86,19 @@ const Dashboard = () => {
                         ))
                       }
                     </div>
+                      {
+                        expenses && expenses.length > 0
+                       ? (
+                            <div className="expenses">
+                              {
+                                expenses.map((expense) => (
+                                  <BudgetItem key={expense.id} budget={expense} />
+                                ))
+                              }
+                            </div>
+                          )
+                          : null
+                      }
                   </div>
                 )
                 : (
