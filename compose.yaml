@@ -7,14 +7,18 @@
 # You can add other services your application may depend on here, such as a
 # database or a cache. For examples, see the Awesome Compose repository:
 # https://github.com/docker/awesome-compose
+version: "3.9"  # Specify the Compose file version
+
 services:
   server:
-    build:
-      context: .
+    build: .  # Build the image from the current directory
     environment:
-      NODE_ENV: production
+      NODE_ENV: production  # Set environment variable for production mode
     ports:
-      - 3333:3333
+      - "3333:3333"  # Map host port 3333 to container port 3333
+    volumes:
+      - "./:/usr/src/app"  # Mount the host project directory into the container's /usr/src/app
+
 
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to

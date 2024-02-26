@@ -69,4 +69,4 @@ COPY --from=build /usr/src/app/output ./output
 EXPOSE 3333
 
 # Run the application.
-CMD node C:\Users\Gasha\Desktop\roots\finance-app-frontend\myfinanceapp-vite\src
+CMD node src/main.jsx
